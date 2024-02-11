@@ -57,11 +57,11 @@
                                                 <input type="checkbox" class="form-check-input" id="newIsAdmin" name="newIsAdmin" <%= user.isAdmin ? 'checked' : '' %>>
                                                 <label class="form-check-label" for="newIsAdmin">Is Admin</label>
                                             </div>
-                                            <button type="submit" class="btn btn-warning">Update</button>
+                                            <button type="submit" class="btn btn-warning btn-sm">Update</button>
                                         </form>
                                         <form action="/users/deleteUser/<%= user._id %>" method="post" id="deleteForm_<%= user._id %>" style="display: inline-block; margin-left: 5px;">
                                             <input type="hidden" name="_method" value="DELETE">
-                                            <button type="button" class="btn btn-danger " onclick="confirmDelete('<%= user._id %>')">Delete</button>
+                                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('<%= user._id %>')">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
