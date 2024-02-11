@@ -13,6 +13,8 @@ password: 1234567
 # Installation
 git clone https://github.com/zhannaa0/MyApp.git
 
+npm install
+
 npm start
 
 Admin can add, update, delete users. All logic is in userController.js 
