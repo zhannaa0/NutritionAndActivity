@@ -1,12 +1,16 @@
 Zhanna Arystanbekova, SE-2205
 
 # Connect to MongoDB Atlas (accessable from every IP )
-mongodb+srv://zhanna14:zhanna123@cluster0.4ow5nxc.mongodb.net/zhanna?retryWrites=true&w=majority
+[mongodb+srv://zhanna14:zhanna123@cluster0.4ow5nxc.mongodb.net/zhanna?retryWrites=true&w=majority](url)
 
 # Admin page
 Please, log in with this account to get admin page:
+
 username: zhanna
+
 passwors: 1234567
+
+
 Admin can add, update, delete users. All logic is in userController.js 
 Information such update Date, delete date and creation date also available on Atlas.
 
