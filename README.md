@@ -10,6 +10,9 @@ username: zhanna
 
 passwors: 1234567
 
+# Installation
+git clone https://github.com/zhannaa0/MyApp.git
+npm start
 
 Admin can add, update, delete users. All logic is in userController.js 
 Information such update Date, delete date and creation date also available on Atlas.
