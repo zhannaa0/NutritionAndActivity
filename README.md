@@ -8,7 +8,7 @@ Please, log in with this account to get admin page:
 
 username: zhanna
 
-passwors: 1234567
+password: 1234567
 
 # Installation
 git clone https://github.com/zhannaa0/MyApp.git
