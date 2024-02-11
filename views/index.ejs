@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('layouts/header'); -%>
+    <body id="page-top">
+        <%- include('layouts/navbar'); -%>
+        <section>
+        <header class="masthead text-dark text-center">
+            <div class="container d-flex align-items-center flex-column">
+                <h1 class="masthead-heading mb-0"> OpenWeather, Nasa, Animals, Cat Generator APIs</h1>
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                
+                <p class="masthead-subheading font-weight-light mb-0"> Description: In my app, you can check weather for 
+                    any city in the world with the held of OpenWeather API. Animals API provides information for any type 
+                    of animals. Cat Generator API generates cat images. Nasa API provides astronomy picture of the day </p>
+                <p class=" font-weight-light mb-0 mt-4" style="color: rgb(17, 10, 35);">For using my application, please, choose option in navigation bar.  </p>
+                <p class=" font-weight-light mb-0 mt-4" style="color: rgb(5, 9, 1);"> You can also download PDF API history</p>
+                <form action="/generatePDF %>" method="get" style="display: inline-block; margin-left: 5px;">
+                    
+                    <button type="submit" class="btn btn-success mt-2 " >Download </button>
+                </form>
+            </div>
+        </header>
+    </section>
+
+        <%- include('layouts/footer'); -%>
+        
+        <%- include('layouts/scripts'); -%>
+    </body>
+</html>

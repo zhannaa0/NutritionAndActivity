@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('layouts/header'); -%>
+    <body id="page-top">
+        <%- include('layouts/navbar'); -%>
+        <section>
+        <header class="masthead text-dark text-center">
+          <h1 class="display-5" style=" text-align: center; color: rgb(44, 41, 41);">New User</h1>
+            <div class="container d-flex align-items-center flex-column">
+                <form action="/users/addUser" method="post">
+                    <div class="form-group mt-2">
+                        <label for="inputName">Name</label>
+                        <input type="text" class="form-control" required id="name" name="name" aria-describedby="nameHelp" placeholder="Enter name">
+        
+                      </div>
+                    <div class="form-group  mt-2">
+                      <label for="exampleInputEmail1">Username </label>
+                      <input type="String" class="form-control" required id="username" name="username" aria-describedby="unHelp" placeholder="Enter username">
+                    </div>
+                    <div class="form-group mt-2">
+                      <label for="isAdmin">Is Admin</label>
+                      <select class="form-control" id="isAdmin" name="isAdmin">
+                          <option value="false">no</option>
+                          <option value="true">yes</option>
+                      </select>
+                  </div>
+                    <div class="form-group  mt-2">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" class="form-control" required id="password" name="password" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2">Add</button>
+                  </form>
+            </div>
+
+            
+        </header>
+    </section>
+
+
+        <%- include('layouts/footer'); -%>
+        
+        <%- include('layouts/scripts'); -%>
+
+        <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form');
+
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const formData = new FormData(form);
+                console.log(formData)
+
+                try {
+                  const response = await fetch('/users/signup', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(Object.fromEntries(formData)),
+                  });
+
+                  if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                  }
+
+                  const result = await response.json();
+                  window.location.href = "/admin";
+                  console.log(result); 
+
+                  } catch (error) {
+                    console.error('Error:', error.message);
+                  }
+            });
+        });
+
+        </script>
+    </body>
+</html>

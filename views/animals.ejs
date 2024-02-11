@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+<body id="page-top" >
+    <%- include('layouts/navbar'); -%>
+
+    <section class="vh-100">
+        <div class="container mt-5" style="height: 100%;">
+  
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-8 col-lg-6 col-xl-4">
+    
+                    <h5 class="ml-2 mb-4 text-dark" style="margin-top: 70px; text-align: center;">Type animal name to get info.</h5> 
+                    <p  style="margin-top: 10px; text-align: center; color: red;">It is important to write full name of animal</p>
+    
+                    <form id="animal_form" action="/animals" method="get">
+                        <div class="input-group rounded mb-3">
+                            <input id="animal" name="animal" type="search" class="form-control rounded" placeholder="For example, 'capybara'" aria-label="Search"
+                                aria-describedby="search-addon" />
+                            <button type="submit" class="btn btn-primary" id="search-button">
+                                Check
+                            </button>
+                        </div>
+                    </form>
+
+
+                    ` <% if (error) { %>
+                        <p class="error"><%= error %></p>
+                        <% } else if (animalDataToEjs) { %>
+                        <div class="card">
+
+                          <h5> 
+                            <%=animalDataToEjs.name%>
+                          </h5>
+
+                          <p>
+                            Scientific name: <%=animalDataToEjs.sciname%>
+                          </p>
+
+                          <p>
+                            Slogan: <%= animalDataToEjs.slogan %>  
+                            </p>
+
+                          <p>
+                            Group: <%=animalDataToEjs.group%> 
+                          </p>
+
+                          <p>
+                            Color: <%=animalDataToEjs.color%> 
+                          </p>
+
+                          <p>
+                            Lifespan: <%=animalDataToEjs.lifespan%> 
+                          </p>
+
+                          <p>
+                            Skin type: <%=animalDataToEjs.skin_type%> 
+                          </p>
+
+                          <p>
+                            Weight: <%=animalDataToEjs.weight%> 
+                          </p>
+
+                          <p>
+                            Locations: <%=animalDataToEjs.locations%> 
+                          </p>
+                        
+                        </div>
+                        <% } %>
+                    
+    
+    
+                        </div>
+            </div>
+    
+        </div>
+    </section>
+
+    <%- include('layouts/footer'); -%>
+
+</body>
+</html>
