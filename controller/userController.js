@@ -76,8 +76,10 @@ const login = async (req, res) =>{
     }
 
     console.log('Login successful');
+    req.session.isAdmin = existingUser.isAdmin;
 
     if (existingUser.isAdmin) {
+        
         console.log('Admin login detected');
         return res.status(200).json({ isAdmin: true });
     }
@@ -90,6 +92,10 @@ const deleteUser = async (req, res) => {
 
 
     try {
+        if (!req.session.isAdmin) {
+            return res.status(403).json({ message: 'Access Denied' });
+        }
+
         const deletedUser = await User.findByIdAndDelete(userId);
         if (!deletedUser) {
             return res.status(404).send('User not found');
@@ -103,6 +109,10 @@ const deleteUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
     const { newUsername, newPassword, newIsAdmin, newName } = req.body;
+    if (!req.session.isAdmin) {
+        return res.status(403).json({ message: 'Access Denied' });
+    }
+
 
 
     const updateFields = {
@@ -127,6 +137,9 @@ const updateUser = async (req, res) => {
 };
 
 const addUser = async (req, res) => {
+    if (!req.session.isAdmin) {
+        return res.status(403).json({ message: 'Access Denied' });
+    }
     const { name, username, password, isAdmin } = req.body;
 
     let existingUser;
