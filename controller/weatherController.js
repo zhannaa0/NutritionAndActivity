@@ -36,7 +36,8 @@ const getWeather = async (req, res) => {
 
         const weatherHistory = new ApiHistory({
             direction: '/weather',
-            query: weatherData
+            query: weatherData,
+            userId: req.session.user._id,
           })
       
         await weatherHistory.save()

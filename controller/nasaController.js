@@ -29,7 +29,8 @@ const getNasa = async (req, res) => {
 
         const nasaHistory = new ApiHistory({
             direction: '/nasa',
-            query: nasaData
+            query: nasaData,
+            userId: req.session.user._id,
           })
       
         await nasaHistory.save()

@@ -76,7 +76,7 @@ const login = async (req, res) =>{
     }
 
     console.log('Login successful');
-    req.session.isAdmin = existingUser.isAdmin;
+    req.session.user = existingUser;
 
     if (existingUser.isAdmin) {
         
@@ -92,7 +92,7 @@ const deleteUser = async (req, res) => {
 
 
     try {
-        if (!req.session.isAdmin) {
+        if (!req.session.user.isAdmin) {
             return res.status(403).json({ message: 'Access Denied' });
         }
 
@@ -109,7 +109,7 @@ const deleteUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
     const { newUsername, newPassword, newIsAdmin, newName } = req.body;
-    if (!req.session.isAdmin) {
+    if (!req.session.user.isAdmin) {
         return res.status(403).json({ message: 'Access Denied' });
     }
 
@@ -137,7 +137,7 @@ const updateUser = async (req, res) => {
 };
 
 const addUser = async (req, res) => {
-    if (!req.session.isAdmin) {
+    if (!req.session.user.isAdmin) {
         return res.status(403).json({ message: 'Access Denied' });
     }
     const { name, username, password, isAdmin } = req.body;

@@ -23,7 +23,8 @@ const getCats = async (req, res) => {
 
     const catsHistory = new ApiHistory({
         direction: '/catgen',
-        query: savedCatImageURL
+        query: savedCatImageURL,
+        userId: req.session.user._id,
       })
   
     await catsHistory.save()

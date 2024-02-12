@@ -37,7 +37,8 @@ const getAnimal = async (req, res) => {
 
     const animalHistory = new ApiHistory({
       direction: '/animals',
-      query: animalData
+      query: animalData,
+      userId: req.session.user._id,
     })
 
     await animalHistory.save()

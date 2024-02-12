@@ -6,7 +6,7 @@ const fs = require('fs');
 
 router.get('/', async (req, res) => {
     try {
-      const data = await ApiHistory.find().lean();
+      const data = await ApiHistory.find({userId: req.session.user._id}).lean();
       const doc = new PDFDocument();
       doc.fontSize(12);
       doc.text('API History', { align: 'center' });

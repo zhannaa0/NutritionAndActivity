@@ -13,6 +13,20 @@ const userRouter = require('./routes/userRouter');
 const methodOverride = require('method-override');
 const pdfRouter = require('./routes/pdfRouter');
 
+mongoose.connect("mongodb+srv://zhanna14:zhanna123@cluster0.4ow5nxc.mongodb.net/zhanna?retryWrites=true&w=majority").then(async () => {
+    app.listen(5010, () => {
+        console.log("Connected to database and listening on port 5010");
+    });
+}).catch((err) => console.error('Error connecting to database:', err));
+
+const authenticateUser = (req, res, next) => {
+    if (req.session.user) {
+        next(); // User is authenticated, proceed to the next middleware
+    } else {
+        res.redirect('/login'); // User is not logged in, redirect to the login page
+    }
+};
+
 app.use(session({
     secret: 'secret', 
     resave: false,
@@ -28,21 +42,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 const isAdmin = (req, res, next) => {
-    if (req.session.isAdmin) {
+    if (req.session.user.isAdmin) {
         next();
     } else {
         res.status(403).send('You cannot access this page since you are not an admin.');
     }
 };
 
-app.use('/weather', WeatherRouter);
-app.use('/nasa', NasaRouter);
-app.use('/catgen', CatRouter);
-app.use('/animals', AnimalsRouter);
+app.use('/weather', authenticateUser, WeatherRouter);
+app.use('/nasa', authenticateUser, NasaRouter);
+app.use('/catgen', authenticateUser, CatRouter);
+app.use('/animals', authenticateUser, AnimalsRouter);
 app.use('/users', userRouter);
-app.use('/generatePdf', pdfRouter);
+app.use('/generatePdf', authenticateUser, pdfRouter);
 
-app.get('/', (req, res)=>{
+app.get('/', authenticateUser,(req, res)=>{
     res.render('index');
 });
 
@@ -87,9 +101,3 @@ app.get('/addUser', isAdmin, (req, res)=>{
 app.listen(port, ()=>{
     console.log(`App is listening on port ${port} ...`);
 });
-
-mongoose.connect("mongodb+srv://zhanna14:zhanna123@cluster0.4ow5nxc.mongodb.net/zhanna?retryWrites=true&w=majority").then(async () => {
-    app.listen(5010, () => {
-        console.log("Connected to database and listening on port 5010");
-    });
-}).catch((err) => console.error('Error connecting to database:', err));
