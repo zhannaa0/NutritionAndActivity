@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+<body id="page-top" >
+    <%- include('layouts/navbar'); -%>
+
+    <section class="vh-100">
+        <div class="container mt-5" style="height: 100%;">
+          <div class="container mt-5" style="height: 100%;">
+            <div class="container" style="margin-top: 150px">
+                <div class="row justify-content-end">
+                    <div class="col-auto">
+                            <a href="/nutrition/en"> English</a>
+                            |<a href="/nutrition/ru"> Русский</a>
+
+                    </div>
+                </div>
+            </div>
+  
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-md-8 col-lg-6 col-xl-4">
+    
+                    <h5 class="ml-2 mb-4 text-dark" style="margin-top: 70px; text-align: center;">Type food name to get info.</h5> 
+    
+                    <form id="nutrition_form" action="/nutrition/en" method="get">
+                        <div class="input-group rounded mb-3">
+                            <input id="nutrition" name="nutrition" type="search" class="form-control rounded" placeholder="For example, 'fries'" aria-label="Search"
+                                aria-describedby="search-addon" />
+                            <button type="submit" class="btn btn-primary" id="search-button">
+                                Check
+                            </button>
+                        </div>
+                    </form>
+
+
+                    ` <% if (error) { %>
+                        <p class="error"><%= error %></p>
+                        <% } else if (nutritionDataTEjs) { %>
+                        <div class="card">
+
+                          <h5> 
+                            <%=nutritionDataTEjs.name%>
+                          </h5>
+
+                          <p>
+                            <strong>Calories:</strong> <%=nutritionDataTEjs.calories%> cal
+                          </p>
+
+                          <p>
+                            <strong>Serving size: </strong><%= nutritionDataTEjs.serving_size_g %> g
+                            </p>
+
+                          <p>
+                            <strong>Fat total:</strong> <%=nutritionDataTEjs.fat_total_g%> g
+                          </p>
+                          <p>
+                            <strong>Sodium:</strong> <%=nutritionDataTEjs.sodium_mg%> mg 
+                          </p>
+                          <p>
+                            <strong>Cholesterol: </strong><%=nutritionDataTEjs.cholesterol_mg%> mg
+                          </p>
+                          <p>
+                            <strong>Carbohydrates:</strong> <%=nutritionDataTEjs.carbohydrates_total_g%> g
+                          </p>
+                          <p>
+                            <strong>Sugar:</strong> <%=nutritionDataTEjs.sugar_g%> g
+                          </p>
+
+
+
+                        
+                        </div>
+                        <% } %>
+                    
+    
+    
+                        </div>
+            </div>
+    
+        </div>
+    </section>
+
+    <%- include('layouts/footer'); -%>
+ <%- include('layouts/scripts'); -%>
+
+</body>
+</html>

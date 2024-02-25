@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+<body id="page-top" >
+    <%- include('layouts/navbar'); -%>
+
+    <section class="vh-100">
+        <div class="container mt-5" style="height: 100%;">
+
+          <div class="container mt-5" style="height: 100%;">
+            <div class="container" style="margin-top: 150px; ">
+                <div class="row justify-content-end">
+                    <div class="col-auto">
+                            <a href="/calories/en"> English</a>
+                            |<a href="/calories/ru"> Русский</a>
+
+                    </div>
+                </div>
+            </div>
+  
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-md-8 col-lg-6 col-xl-4">
+    
+                    <h5 class="ml-2 mb-4 text-dark" style=" text-align: center;">Type activity name to get info.</h5> 
+    
+                    <form id="calories_form" action="/calories/en" method="get">
+                        <div class="input-group rounded mb-3">
+                            <input id="query" name="query" type="search" class="form-control rounded" placeholder="For example, 'skiing'" aria-label="Search"
+                                aria-describedby="search-addon" />
+                            <button type="submit" class="btn btn-primary" id="search-button">
+                                Check
+                            </button>
+                        </div>
+                    </form>
+
+
+                    ` <% if (error) { %>
+                        <p class="error"><%= error %></p>
+                        <% } else if (caloriesDataTEjs) { %>
+                        <div class="card">
+
+                          <h5> 
+                            <%=caloriesDataTEjs.name%>
+                          </h5>
+
+                          <p>
+                            <strong>Calories:</strong> <%=caloriesDataTEjs.calories_per_hour%> kiloCalories
+                          </p>
+
+                          <p>
+                            <strong>Duration minutes:</strong> <%= caloriesDataTEjs.duration_minutes %> minutes
+                            </p>
+
+                          <p>
+                            <strong>Total calories:</strong> <%=caloriesDataTEjs.total_calories%> kiloCalories
+                          </p>
+
+                        
+                        </div>
+                        <% } %>
+                    
+    
+    
+                        </div>
+            </div>
+    
+        </div>
+    </section>
+
+    <%- include('layouts/footer'); -%>
+ <%- include('layouts/scripts'); -%>
+
+</body>
+</html>

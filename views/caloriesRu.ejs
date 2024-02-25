@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+<body id="page-top" >
+    <nav class="navbar navbar-expand-lg bg-success text-uppercase fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#page-top">Nutrition & Health</a>
+            <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Меню
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/">Главная страница</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/calories/en">Сжигание калорий</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/nutrition/en">Питание</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/login">Авторизация</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="vh-100">
+        <div class="container mt-5" style="height: 100%;">
+            <div class="container" style="margin-top: 150px">
+                <div class="row justify-content-end">
+                    <div class="col-auto">
+                            <a href="/calories/en"> English</a>
+                            |<a href="/calories/ru"> Русский</a>
+
+                    </div>
+                </div>
+            </div>
+  
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-md-8 col-lg-6 col-xl-4">
+    
+                    <h5 class="ml-2 mb-4 text-dark" style=" text-align: center;">Введите название действия, чтобы получить информацию. (На английском)</h5> 
+    
+                    <form id="calories_form" action="/calories/ru" method="get">
+                        <div class="input-group rounded mb-3">
+                            <input id="query" name="query" type="search" class="form-control rounded" placeholder="Например, 'skiing'" aria-label="Search"
+                                aria-describedby="search-addon" />
+                            <button type="submit" class="btn btn-primary" id="search-button">
+                                Проверить
+                            </button>
+                        </div>
+                    </form>
+
+
+                    ` <% if (error) { %>
+                        <p class="error"><%= error %></p>
+                        <% } else if (caloriesDataTEjs) { %>
+                        <div class="card">
+
+                          <h5> 
+                            <%=caloriesDataTEjs.name%>
+                          </h5>
+
+                          <p>
+                            <strong>Калорий в час:</strong> <%=caloriesDataTEjs.calories_per_hour%> килоКалорий
+                          </p>
+
+                          <p>
+                            <strong>Продолжительность минут:</strong> <%= caloriesDataTEjs.duration_minutes %> Минут
+                            </p>
+
+                          <p>
+                            <strong>Всего калорий:</strong> <%=caloriesDataTEjs.total_calories%> килоКалорий
+                          </p>
+
+                        
+                        </div>
+                        <% } %>
+                    
+    
+    
+                        </div>
+            </div>
+    
+        </div>
+    </section>
+
+    <%- include('layouts/footer'); -%>
+ <%- include('layouts/scripts'); -%>
+
+</body>
+</html>

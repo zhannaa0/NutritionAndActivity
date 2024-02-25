@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Post</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">Add Post</h1>
+        <form action="/posts/add" method="POST">
+            <div class="mb-3">
+                <label for="title" class="form-label">Image1:</label>
+                <input type="text" class="form-control" id="image1" name="image1">
+            </div>
+            <div class="mb-3">
+                <label for="author" class="form-label">Image2:</label>
+                <input type="text" class="form-control" id="image2" name="image2">
+            </div>
+            <div class="mb-3">
+                <label for="genre" class="form-label">Image3:</label>
+                <input type="text" class="form-control" id="image3" name="image3">
+            </div>
+            <div class="mb-3">
+                <label for="year" class="form-label">Title RU:</label>
+                <input type="text" class="form-control" id="title_ru" name="title_ru">
+            </div>
+            <div class="mb-3">
+                <label for="year" class="form-label">Title EN:</label>
+                <input type="text" class="form-control" id="title_eng" name="title_eng">
+            </div>
+            <div class="mb-3">
+                <label for="year" class="form-label">Description RU:</label>
+                <input type="text" class="form-control" id="desc_ru" name="desc_ru">
+            </div>
+            <div class="mb-3">
+                <label for="year" class="form-label">Description ENG:</label>
+                <input type="text" class="form-control" id="desc_eng" name="desc_eng">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Post</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

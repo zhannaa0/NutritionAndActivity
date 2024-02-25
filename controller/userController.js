@@ -30,13 +30,12 @@ const signup = async (req, res) => {
             return res.status(400).json({ message: 'User already exists' });
         }
 
-        // const hashedPassword = bcrypt.hashSync(password, 7);
+        const hashedPassword = bcrypt.hashSync(password, 7);
 
         const user = new User({
             name,
             username,
-            // password: hashedPassword,
-            password,
+            password: hashedPassword,
             isAdmin 
         });
 
@@ -67,8 +66,8 @@ const login = async (req, res) =>{
         return res.status(404).json({message: 'User with this username does not exist'});
     }
 
-    // const isPasswordCorrect = bcrypt.compareSync(password, existingUser.password);
-    const isPasswordCorrect = password === existingUser.password;
+    const isPasswordCorrect = bcrypt.compareSync(password, existingUser.password);
+    // const isPasswordCorrect = password === existingUser.password;
 
     if (!isPasswordCorrect){
         console.log('Incorrect password');
@@ -152,12 +151,12 @@ const addUser = async (req, res) => {
             return res.status(400).json({ message: 'User already exists' });
         }
 
-        // const hashedPassword = bcrypt.hashSync(password, 7);
+        const hashedPassword = bcrypt.hashSync(password, 7);
 
         const user = new User({
             name,
             username,
-            // password: hashedPassword,
+            password: hashedPassword,
             password,
             isAdmin 
         });

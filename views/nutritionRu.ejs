@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+<body id="page-top" >
+    <nav class="navbar navbar-expand-lg bg-success text-uppercase fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#page-top">Nutrition & Health</a>
+            <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Меню
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/">Главная страница</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/calories/en">Сжигание калорий</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/nutrition/en">Питание</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/login">Авторизация</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="vh-100">
+        <div class="container mt-5" style="height: 100%;">
+
+            <div class="container mt-5" style="height: 100%;">
+                <div class="container mt-5" style="height: 100%;">
+                  <div class="container" style="margin-top: 150px">
+                      <div class="row justify-content-end">
+                          <div class="col-auto">
+                                  <a href="/nutrition/en"> English</a>
+                                  |<a href="/nutrition/ru"> Русский</a>
+      
+                          </div>
+                      </div>
+                  </div>
+  
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-md-8 col-lg-6 col-xl-4">
+    
+                    <h5 class="ml-2 mb-4 text-dark" style="margin-top: 70px; text-align: center;">Введите название еды на английском.</h5> 
+    
+                    <form id="nutrition_form" action="/nutrition/ru" method="get">
+                        <div class="input-group rounded mb-3">
+                            <input id="nutrition" name="nutrition" type="search" class="form-control rounded" placeholder="Например, 'fries'" aria-label="Search"
+                                aria-describedby="search-addon" />
+                            <button type="submit" class="btn btn-primary" id="search-button">
+                                Проверить
+                            </button>
+                        </div>
+                    </form>
+
+
+                    ` <% if (error) { %>
+                        <p class="error"><%= error %></p>
+                        <% } else if (nutritionDataTEjs) { %>
+                        <div class="card">
+
+                          <h5> 
+                            <%=nutritionDataTEjs.name%>
+                          </h5>
+
+                          <p>
+                           <strong> Калории:</strong> <%=nutritionDataTEjs.calories%> калорий
+                          </p>
+
+                          <p>
+                          <strong> Порция:</strong> <%= nutritionDataTEjs.serving_size_g %> гр
+                            </p>
+
+                          <p>
+                          <strong>  Всего жиров:</strong> <%=nutritionDataTEjs.fat_total_g%> гр
+                          </p>
+                          <p>
+                          <strong>  Натрий:</strong> <%=nutritionDataTEjs.sodium_mg%> мг
+                          </p>
+                          <p>
+                          <strong>  Холестерин:</strong> <%=nutritionDataTEjs.cholesterol_mg%> мг
+                          </p>
+                          <p>
+                          <strong>  Углеводы:</strong> <%=nutritionDataTEjs.carbohydrates_total_g%> гр
+                          </p>
+                          <p>
+                          <strong>  Сахар:</strong> <%=nutritionDataTEjs.sugar_g%> гр
+                          </p>
+
+
+
+                        
+                        </div>
+                        <% } %>
+                    
+    
+    
+                        </div>
+            </div>
+    
+        </div>
+    </section>
+
+    <%- include('layouts/footer'); -%>
+ <%- include('layouts/scripts'); -%>
+
+</body>
+</html>

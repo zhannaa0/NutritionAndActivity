@@ -17,13 +17,32 @@
 
 
 <body id="page-top">
-    <%- include('layouts/navbar'); -%>
-
-    <section class="admin-section">
+    <nav class="navbar navbar-expand-lg bg-success text-uppercase fixed-top" id="mainNav">
         <div class="container">
+            <a class="navbar-brand" href="#page-top">Nutrition & Activity</a>
+            <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/">Main page</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/calories/en">Calories Burned</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/nutrition/en">Nutrition</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/posts">Posts admin</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/admin">Users</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/login">Authorization</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="admin-section mt-5">
+        <div class="container mt-5">
             <h1 class="display-5 text-center text-dark">Admin Page</h1>
             
-                <a href="/addUser" class="btn btn-success mt-5 mb-5">Add user</a>
+                <!-- <a href="/addUser" class="btn btn-success mt-5 mb-5">Add user</a> -->
             
 
             <div class="table-responsive">
