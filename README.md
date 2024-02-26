@@ -54,7 +54,7 @@ I used BCRYPT for hashing passwords
 Contains full logic of app.
 
 # Routes
-Routes with exported functions from controllers. (I tried to maintain clean code architecture)
+Routes with exported functions from controllers. 
 
 # Models
 Models are responsible for adding defining Schemas and new models to DB

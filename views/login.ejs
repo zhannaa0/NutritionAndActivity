@@ -4,68 +4,79 @@
     <body id="page-top">
         <%- include('layouts/navbar'); -%>
         <section>
-        <header class="masthead text-dark text-center">
-            <div class="container d-flex align-items-center flex-column">
-                <form action="/users/login" method="post">
-                    <div class="form-group">
-                      <label for="exampleInput1">Username </label>
-                      <input type="String" class="form-control" id="username" name="username" aria-describedby="unHelp" required placeholder="Enter username">
-                      <small class="form-text text-muted">Do not have an account? <strong><a href="/signUp">Sign Up</a></strong></small>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Password</label>
-                      <input type="password" class="form-control required" id="password" name="password" required placeholder="Password">
-                    </div>
-                    <button type="submit" class="btn btn-primary mt-2">Submit</button>
-                  </form>
-            </div>
+            <header class="masthead text-dark text-center">
+                <div class="container d-flex align-items-center flex-column">
+                    <form id="login-form" action="/users/login" method="post">
+                        <div class="form-group">
 
-            
-        </header>
-    </section>
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required placeholder="Enter username">
+
+                        </div>
 
 
+                        <div class="form-group">
+
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required placeholder="Password">
+
+                            <small class="form-text text-muted">Do not have an account? <strong><a href="/signUp">Sign Up</a></strong></small>
+                        
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                        <div id="error-message" class="text-danger"></div>
+                    
+                    </form>
+                </div>
+            </header>
+        </section>
         <%- include('layouts/footer'); -%>
-        
         <%- include('layouts/scripts'); -%>
 
+
+
+
+
+
+
         <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.querySelector('form');
+            document.addEventListener('DOMContentLoaded', () => {
+                const form = document.getElementById('login-form');
+                const errorMessage = document.getElementById('error-message');
 
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault();
+                form.addEventListener('submit', async (event) => {
+                    event.preventDefault();
 
-        const formData = new FormData(form);
+                    const formData = new FormData(form);
 
-        try {
-            const response = await fetch('/users/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(Object.fromEntries(formData)),
+                    try {
+                        const response = await fetch(form.action, {
+                            method: form.method,
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(Object.fromEntries(formData)),
+                        });
+
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+
+                        const result = await response.json();
+                        console.log(result);
+
+                        if (result.isAdmin) {
+                            window.location.href = "/admin";
+                        } else {
+                            window.location.href = "/";
+                        }
+                    } catch (error) {
+                        console.error('Error:', error.message);
+                        errorMessage.textContent = 'Incorrect login or password';
+                    }
+                });
             });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-
-            const result = await response.json();
-            console.log(result);
-
-            if (result.isAdmin) {
-                window.location.href = "/admin";
-            } else {
-                window.location.href = "/";
-            }
-
-        } catch (error) {
-            console.error('Error:', error.message);
-        }
-    });
-});
-
         </script>
     </body>
 </html>
